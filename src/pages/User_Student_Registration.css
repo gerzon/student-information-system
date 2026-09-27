@@ -1,0 +1,1793 @@
+.sis-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #f2f7fd;
+}
+
+.sis-sidebar {
+  position: sticky;
+  top: 42px;
+  z-index: 3;
+  display: flex;
+  flex: 0 0 210px;
+  flex-direction: column;
+  align-self: flex-start;
+  width: 210px;
+  height: calc(100vh - 42px);
+  height: calc(100dvh - 42px);
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  color: #d8e5f8;
+  background: linear-gradient(160deg, #102b50 0%, #0b2142 100%);
+  scrollbar-color: rgb(181 202 229 / 40%) transparent;
+  scrollbar-width: thin;
+}
+
+.sis-layout.is-collapsed .sis-sidebar {
+  flex-basis: 66px;
+  transition: flex-basis 180ms ease;
+}
+
+.sis-layout.is-collapsed .sis-brand {
+  justify-content: center;
+  padding-right: 8px;
+  padding-left: 8px;
+}
+
+.sis-layout.is-collapsed .sis-brand-copy,
+.sis-layout.is-collapsed .sis-nav-link span {
+  display: none;
+}
+
+.sis-layout.is-collapsed .sis-nav-link {
+  justify-content: center;
+  padding: 0;
+}
+
+.sis-layout.is-collapsed .sis-nav-group-title {
+  justify-content: center;
+  padding: 0;
+}
+
+.sis-layout.is-collapsed .sis-nav-group-title > span:last-child {
+  display: none;
+}
+
+.sis-sidebar-backdrop {
+  display: none;
+}
+
+.sis-brand {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 13px;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgb(255 255 255 / 10%);
+}
+
+.sis-brand-mark {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  place-items: center;
+  color: #fff;
+}
+
+.sis-brand-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.sis-brand-copy {
+  display: grid;
+  gap: 1px;
+  white-space: nowrap;
+}
+
+.sis-brand-copy strong {
+  color: #f6f9ff;
+  font-size: 11px;
+  font-weight: 650;
+  line-height: 1.25;
+}
+
+.sis-brand-copy span {
+  color: #b6c9e2;
+  font-size: 9px;
+  line-height: 1.3;
+}
+
+.sis-navigation {
+  display: grid;
+  align-content: start;
+  gap: 7px;
+  padding: 10px 7px 14px;
+}
+
+.sis-nav-group {
+  display: grid;
+  gap: 2px;
+}
+
+.sis-nav-group + .sis-nav-group {
+  padding-top: 6px;
+  border-top: 1px solid rgb(255 255 255 / 8%);
+}
+
+.sis-nav-group-title {
+  display: flex;
+  min-height: 22px;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  padding: 0 9px;
+  color: #91a9c7;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.sis-nav-group-title > span:first-child {
+  font-size: 11px;
+  letter-spacing: normal;
+}
+
+.sis-nav-link {
+  display: flex;
+  min-height: 32px;
+  align-items: center;
+  gap: 11px;
+  padding: 0 11px;
+  color: #cfdaea;
+  font-size: 11px;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 140ms ease, color 140ms ease;
+}
+
+.sis-nav-link:hover {
+  color: #fff;
+  background: rgb(255 255 255 / 9%);
+}
+
+.sis-nav-link.is-active {
+  color: #fff;
+  background: #1557c0;
+}
+
+.sis-nav-link.is-disabled {
+  color: #8296b0;
+  cursor: not-allowed;
+  opacity: 0.68;
+}
+
+.sis-nav-link.is-disabled:hover {
+  color: #8296b0;
+  background: transparent;
+}
+
+.sis-nav-link svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 15px;
+}
+
+.sis-main {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+  padding-top: 42px;
+}
+
+.sis-topbar {
+  position: fixed;
+  z-index: 5;
+  inset: 0 0 auto;
+  display: flex;
+  height: 42px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+  background: #fff;
+  border-bottom: 1px solid #e3eaf3;
+}
+
+.sis-menu-button,
+.sis-admin-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #18345d;
+  background: transparent;
+  border: 0;
+}
+
+.sis-menu-button {
+  width: 26px;
+  height: 28px;
+  padding: 4px;
+}
+
+.sis-menu-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.sis-admin-button {
+  gap: 7px;
+  padding: 0;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.sis-admin-button > svg {
+  width: 11px;
+  height: 11px;
+}
+
+.sis-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sis-notification-menu {
+  position: relative;
+}
+
+.sis-notification-button {
+  position: relative;
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  color: #34516f;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+}
+
+.sis-notification-button:hover,
+.sis-notification-button[aria-expanded="true"] {
+  color: #1559b9;
+  background: #f2f7fd;
+}
+
+.sis-notification-button > svg {
+  width: 19px;
+  height: 19px;
+}
+
+.sis-notification-count {
+  position: absolute;
+  top: 0;
+  right: -1px;
+  display: grid;
+  min-width: 16px;
+  height: 16px;
+  place-items: center;
+  padding: 0 3px;
+  color: #fff;
+  background: #d83c48;
+  border: 2px solid #fff;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.sis-notification-popover {
+  position: absolute;
+  z-index: 21;
+  top: calc(100% + 9px);
+  right: -92px;
+  width: min(390px, calc(100vw - 24px));
+  max-height: min(70vh, 520px);
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #dfe7f1;
+  border-radius: 7px;
+  box-shadow: 0 12px 32px rgb(14 35 63 / 18%);
+}
+
+.sis-notification-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 14px;
+  border-bottom: 1px solid #e9eef5;
+}
+
+.sis-notification-heading > div {
+  display: grid;
+  gap: 4px;
+}
+
+.sis-notification-heading strong {
+  color: #1b365c;
+  font-size: 13px;
+}
+
+.sis-notification-heading span {
+  color: #8291a4;
+  font-size: 11px;
+}
+
+.sis-notification-heading a {
+  flex: 0 0 auto;
+  color: #1559b9;
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.sis-notification-heading a:hover {
+  text-decoration: underline;
+}
+
+.sis-notification-list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sis-notification-list li {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 11px;
+  padding: 12px 14px;
+  border-bottom: 1px solid #eef2f7;
+}
+
+.sis-notification-list time {
+  padding-top: 1px;
+  color: #55708f;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.sis-notification-list li > div {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.sis-notification-list li strong {
+  color: #2b4361;
+  font-size: 12px;
+}
+
+.sis-notification-list li span {
+  color: #8291a4;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.sis-notification-empty {
+  margin: 0;
+  padding: 20px 14px;
+  color: #8291a4;
+  font-size: 12px;
+  text-align: center;
+}
+
+.sis-notification-empty.is-error {
+  color: #a83232;
+}
+
+.sis-admin-menu {
+  position: relative;
+}
+
+.sis-admin-dropdown {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 8px);
+  right: 0;
+  display: grid;
+  width: 150px;
+  padding: 5px;
+  background: #fff;
+  border: 1px solid #dfe7f1;
+  border-radius: 5px;
+  box-shadow: 0 8px 24px rgb(14 35 63 / 14%);
+}
+
+.sis-admin-dropdown button {
+  padding: 8px 9px;
+  color: #34516f;
+  background: transparent;
+  border: 0;
+  border-radius: 3px;
+  font: inherit;
+  font-size: 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sis-admin-dropdown button:hover,
+.sis-admin-dropdown button:focus-visible {
+  color: #1559b9;
+  background: #f2f7fd;
+  outline: 0;
+}
+
+.sis-admin-avatar {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  color: #395a87;
+  background: #dce7f5;
+  border-radius: 50%;
+}
+
+.sis-admin-avatar svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.sis-profile-backdrop {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgb(12 29 54 / 56%);
+}
+
+.sis-profile-dialog {
+  width: min(100%, 380px);
+  padding: 18px;
+  background: #fff;
+  border: 1px solid #dfe7f1;
+  border-radius: 7px;
+  box-shadow: 0 18px 50px rgb(14 35 63 / 24%);
+}
+
+.sis-profile-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e9eef5;
+}
+
+.sis-profile-heading h2 {
+  margin: 0 0 4px;
+  color: #1b365c;
+  font-size: 14px;
+}
+
+.sis-profile-heading p {
+  margin: 0;
+  color: #8291a4;
+  font-size: 10px;
+}
+
+.sis-profile-heading button {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  color: #637992;
+  background: #f6f8fb;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  font-size: 19px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.sis-profile-details {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 0 10px;
+}
+
+.sis-profile-details > div {
+  display: grid;
+  gap: 4px;
+}
+
+.sis-profile-details strong {
+  color: #2b4361;
+  font-size: 11px;
+}
+
+.sis-profile-details > div > span,
+.sis-profile-note {
+  color: #70829a;
+  font-size: 9px;
+}
+
+.sis-profile-note {
+  margin: 7px 0 0;
+  line-height: 1.5;
+}
+
+.sis-page-content {
+  width: 100%;
+  max-width: 1480px;
+  flex: 1 0 auto;
+  margin: 0 auto;
+  padding: 16px 15px 24px;
+}
+
+.sis-project-footer {
+  width: 100%;
+  padding: 11px 15px;
+  color: #8291a4;
+  border-top: 1px solid #e3eaf3;
+  font-size: 9px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.sis-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin: 0 4px 7px;
+  color: #1450a7;
+  font-size: 10px;
+}
+
+.sis-breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.sis-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.sis-breadcrumb > span:first-of-type {
+  color: #8495aa;
+  font-size: 17px;
+  line-height: 1;
+}
+
+.sis-page-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 4px 17px;
+}
+
+.sis-heading-icon {
+  display: grid;
+  width: 24px;
+  height: 28px;
+  flex: 0 0 24px;
+  place-items: center;
+  color: #17345e;
+}
+
+.sis-heading-icon svg {
+  width: 25px;
+  height: 25px;
+  fill: currentColor;
+}
+
+.sis-page-heading h1 {
+  margin: 0 0 1px;
+  color: #1a355d;
+  font-size: 19px;
+  font-weight: 680;
+  line-height: 1.25;
+  letter-spacing: -0.45px;
+}
+
+.sis-page-heading p {
+  margin: 0;
+  color: #607490;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.registration-card {
+  padding: 13px 15px 15px;
+  background: #fff;
+  border: 1px solid #dce6f1;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgb(16 42 79 / 5%);
+}
+
+.registration-section + .registration-section {
+  margin-top: 25px;
+}
+
+.section-heading {
+  display: flex;
+  min-height: 31px;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 12px;
+  padding: 4px 8px;
+  color: #183963;
+  background: linear-gradient(90deg, #eaf4fd 0%, #f1f7fd 100%);
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.3;
+}
+
+.section-icon {
+  display: grid;
+  width: 15px;
+  height: 18px;
+  flex: 0 0 15px;
+  place-items: center;
+  color: #1556b5;
+}
+
+.section-icon svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 14px;
+  row-gap: 12px;
+}
+
+.field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.field label,
+.remarks-field label {
+  color: #1d3659;
+  font-size: 10px;
+  font-weight: 650;
+  line-height: 1.25;
+}
+
+.required {
+  color: #d74747;
+}
+
+.field input,
+.field select,
+.remarks-field textarea {
+  width: 100%;
+  min-width: 0;
+  color: #234166;
+  background: #fff;
+  border: 1px solid #d9e3ef;
+  border-radius: 5px;
+  box-shadow: inset 0 1px 2px rgb(21 48 82 / 3%);
+  font-size: 10px;
+  transition: border-color 140ms ease, box-shadow 140ms ease;
+}
+
+.field input,
+.field select {
+  height: 28px;
+  padding: 0 11px;
+}
+
+.field input::placeholder,
+.remarks-field textarea::placeholder {
+  color: #8192a9;
+  opacity: 1;
+}
+
+.field input:focus,
+.field select:focus,
+.remarks-field textarea:focus {
+  border-color: #4385dd;
+  box-shadow: 0 0 0 3px rgb(38 111 207 / 10%);
+  outline: 0;
+}
+
+.field select {
+  appearance: none;
+  padding-right: 30px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%233c5678' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+.input-with-action {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  align-items: center;
+}
+
+.input-with-action input {
+  padding-right: 36px;
+}
+
+.input-action {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  display: grid;
+  width: 20px;
+  height: 22px;
+  place-items: center;
+  padding: 2px;
+  color: #385679;
+  background: transparent;
+  border: 0;
+  transform: translateY(-50%);
+}
+
+.input-action svg,
+.date-input > svg {
+  width: 13px;
+  height: 13px;
+}
+
+.date-input > svg {
+  position: absolute;
+  right: 10px;
+  color: #385679;
+  pointer-events: none;
+}
+
+.date-input input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0;
+}
+
+.field-hint {
+  margin-top: -2px;
+  color: #8192a9;
+  font-size: 9px;
+  line-height: 1.2;
+}
+
+.field-error {
+  margin-top: -2px;
+  color: #ba3434;
+  font-size: 9px;
+  line-height: 1.2;
+}
+
+.field input[aria-invalid='true'] {
+  border-color: #d74747;
+}
+
+.additional-information {
+  margin-top: 18px;
+  overflow: hidden;
+  border: 1px solid #e3ebf4;
+  border-radius: 5px;
+}
+
+.additional-information summary {
+  display: flex;
+  min-height: 29px;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  color: #1c3d69;
+  background: linear-gradient(90deg, #edf5fc 0%, #f6f9fc 100%);
+  cursor: pointer;
+  list-style: none;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.additional-information summary::-webkit-details-marker {
+  display: none;
+}
+
+.additional-information summary > svg {
+  width: 11px;
+  height: 11px;
+  transform: rotate(-90deg);
+  transition: transform 140ms ease;
+}
+
+.additional-information[open] summary > svg {
+  transform: rotate(0);
+}
+
+.optional-label {
+  margin-left: -5px;
+  color: #8495aa;
+  font-size: 9px;
+  font-weight: 400;
+}
+
+.remarks-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px 9px 5px;
+}
+
+.remarks-field textarea {
+  min-height: 55px;
+  resize: vertical;
+  padding: 7px 10px;
+  line-height: 1.4;
+}
+
+.character-count {
+  align-self: flex-end;
+  margin-top: -3px;
+  color: #8192a9;
+  font-size: 9px;
+  line-height: 1.1;
+}
+
+.form-notice {
+  margin: 12px 0 0;
+  padding: 9px 11px;
+  color: #185b37;
+  background: #edf8f0;
+  border: 1px solid #cdebd4;
+  border-radius: 4px;
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.form-notice.is-error {
+  color: #9f2828;
+  background: #fff2f1;
+  border-color: #f4d1cd;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+  margin-top: 16px;
+}
+
+.registration-auth-switch {
+  margin: 14px 0 0;
+  color: #6b7e97;
+  font-size: 11px;
+  text-align: center;
+}
+
+.registration-auth-switch a {
+  color: #1559b9;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.registration-auth-switch a:hover {
+  color: #0d469a;
+  text-decoration: underline;
+}
+
+.button {
+  display: inline-flex;
+  min-height: 27px;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 5px 11px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  transition: background-color 140ms ease, border-color 140ms ease,
+    box-shadow 140ms ease;
+}
+
+.button svg {
+  width: 13px;
+  height: 13px;
+}
+
+.button-secondary {
+  color: #344d6c;
+  background: #fff;
+  border: 1px solid #c6d3e2;
+}
+
+.button-secondary:hover {
+  background: #f4f7fb;
+  border-color: #aabbd0;
+}
+
+.button-primary {
+  color: #fff;
+  background: #1260d5;
+  border: 1px solid #1260d5;
+  box-shadow: 0 2px 4px rgb(18 96 213 / 15%);
+}
+
+.button-primary svg {
+  fill: currentColor;
+}
+
+.button-primary:hover {
+  background: #0e50b4;
+  border-color: #0e50b4;
+}
+
+.student-registration-page {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  color: #18345d;
+  background:
+    radial-gradient(ellipse at 4% 0%, rgb(217 234 253 / 75%), transparent 32%),
+    #f2f7fd;
+}
+
+.student-portal-header {
+  display: flex;
+  min-height: 62px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 10px max(20px, calc((100vw - 1080px) / 2));
+  background: #fff;
+  border-bottom: 1px solid #e1e9f2;
+}
+
+.student-portal-brand {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+  color: #193960;
+  text-decoration: none;
+}
+
+.student-portal-brand-mark {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  place-items: center;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #dce6f1;
+  border-radius: 8px;
+}
+
+.student-portal-brand-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.student-portal-brand strong,
+.student-portal-brand small {
+  display: block;
+}
+
+.student-portal-brand strong {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.student-portal-brand small {
+  margin-top: 2px;
+  color: #72849b;
+  font-size: 10px;
+  line-height: 1.3;
+}
+
+.student-portal-login {
+  flex: 0 0 auto;
+  color: #6b7e97;
+  font-size: 11px;
+  text-decoration: none;
+}
+
+.student-portal-login strong {
+  margin-left: 4px;
+  color: #1559b9;
+}
+
+.student-portal-login:hover strong {
+  text-decoration: underline;
+}
+
+.student-registration-main {
+  width: 100%;
+  flex: 1;
+  padding: 38px 20px 24px;
+}
+
+.student-registration-intro {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto 20px;
+}
+
+.student-registration-eyebrow {
+  color: #3973b9;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.student-registration-intro h1 {
+  margin: 6px 0 5px;
+  color: #193960;
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: -0.55px;
+  line-height: 1.25;
+}
+
+.student-registration-intro p {
+  margin: 0;
+  color: #647a96;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.student-portal-footer {
+  padding: 14px 20px;
+  color: #8291a4;
+  border-top: 1px solid #e1e9f2;
+  font-size: 10px;
+  text-align: center;
+}
+
+.claim-page {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.claim-preview-note {
+  margin-bottom: 13px;
+  padding: 10px 12px;
+  color: #785b1e;
+  background: #fff9e9;
+  border: 1px solid #f0e2b9;
+  border-radius: 5px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.claim-preview-note strong {
+  font-weight: 700;
+}
+
+.claim-card {
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #dce6f1;
+  border-radius: 7px;
+  box-shadow: 0 1px 3px rgb(16 42 79 / 5%);
+}
+
+.claim-step-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+}
+
+.claim-step-number {
+  display: grid;
+  width: 27px;
+  height: 27px;
+  flex: 0 0 27px;
+  place-items: center;
+  color: #1559b9;
+  background: #eaf3ff;
+  border: 1px solid #d9e9fb;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.claim-step-heading h2 {
+  margin: 1px 0 3px;
+  color: #1a355d;
+  font-size: 15px;
+  font-weight: 680;
+}
+
+.claim-step-heading p {
+  margin: 0;
+  color: #70839b;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.claim-lookup-form {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  margin: 18px 0 0 38px;
+}
+
+.claim-field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.claim-lookup-form > .claim-field {
+  flex: 1;
+}
+
+.claim-field label {
+  color: #1d3659;
+  font-size: 11px;
+  font-weight: 650;
+  line-height: 1.3;
+}
+
+.claim-field label > span {
+  color: #d74747;
+}
+
+.claim-field input {
+  width: 100%;
+  min-width: 0;
+  height: 39px;
+  padding: 0 11px;
+  color: #234166;
+  background: #fff;
+  border: 1px solid #d9e3ef;
+  border-radius: 5px;
+  box-shadow: inset 0 1px 2px rgb(21 48 82 / 3%);
+  font-size: 12px;
+  transition: border-color 140ms ease, box-shadow 140ms ease;
+}
+
+.claim-field input::placeholder {
+  color: #8192a9;
+  opacity: 1;
+}
+
+.claim-field input:focus {
+  border-color: #4385dd;
+  box-shadow: 0 0 0 3px rgb(38 111 207 / 10%);
+  outline: 0;
+}
+
+.claim-field input[aria-invalid='true'] {
+  border-color: #d74747;
+}
+
+.claim-field-hint {
+  color: #8192a9;
+  font-size: 9px;
+  line-height: 1.3;
+}
+
+.claim-button {
+  display: inline-flex;
+  min-height: 39px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 8px 13px;
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 650;
+  transition: background-color 140ms ease, border-color 140ms ease,
+    box-shadow 140ms ease;
+}
+
+.claim-button svg {
+  width: 15px;
+  height: 15px;
+}
+
+.claim-button-primary {
+  color: #fff;
+  background: #1260d5;
+  border: 1px solid #1260d5;
+  box-shadow: 0 2px 4px rgb(18 96 213 / 15%);
+}
+
+.claim-button-primary:hover {
+  background: #0e50b4;
+  border-color: #0e50b4;
+}
+
+.claim-button-secondary {
+  color: #344d6c;
+  background: #fff;
+  border: 1px solid #c6d3e2;
+}
+
+.claim-button-secondary:hover {
+  background: #f4f7fb;
+  border-color: #aabbd0;
+}
+
+.claim-message {
+  margin: 16px 0 0 38px;
+  padding: 11px 12px;
+  color: #315477;
+  background: #f0f6fd;
+  border: 1px solid #d8e7f7;
+  border-radius: 5px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.claim-message.is-error {
+  color: #9f2828;
+  background: #fff2f1;
+  border-color: #f4d1cd;
+}
+
+.claim-message a {
+  margin-left: 3px;
+  color: #1559b9;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.claim-message a:hover {
+  text-decoration: underline;
+}
+
+.claim-record-result {
+  margin: 18px 0 0 38px;
+  padding-top: 16px;
+  border-top: 1px solid #e8eef5;
+}
+
+.claim-result-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.claim-result-check {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  place-items: center;
+  color: #19815c;
+  background: #e8f7f0;
+  border-radius: 50%;
+}
+
+.claim-result-check svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.claim-result-heading > div {
+  display: grid;
+  gap: 3px;
+}
+
+.claim-result-heading strong {
+  color: #1d694b;
+  font-size: 12px;
+}
+
+.claim-result-heading > div > span {
+  color: #6f8299;
+  font-size: 10px;
+}
+
+.claim-record-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 18px;
+  margin: 15px 0 0;
+  padding: 3px 13px;
+  background: #f8fafd;
+  border: 1px solid #e5ecf4;
+  border-radius: 5px;
+}
+
+.claim-record-details > div {
+  display: grid;
+  gap: 4px;
+  padding: 10px 0;
+  border-bottom: 1px solid #e9eef5;
+}
+
+.claim-record-details > div:nth-last-child(-n + 2) {
+  border-bottom: 0;
+}
+
+.claim-record-details dt,
+.claim-locked-record small {
+  color: #8291a4;
+  font-size: 9px;
+  font-weight: 500;
+}
+
+.claim-record-details dd {
+  overflow-wrap: anywhere;
+  margin: 0;
+  color: #243e60;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.claim-result-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 15px;
+}
+
+.claim-account-form {
+  margin-top: 23px;
+  padding-top: 19px;
+  border-top: 1px solid #e8eef5;
+}
+
+.claim-account-heading {
+  margin-bottom: 14px;
+}
+
+.claim-locked-record {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.3fr 0.9fr auto;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 15px;
+  padding: 10px 12px;
+  background: #f5f8fc;
+  border: 1px solid #e2eaf4;
+  border-radius: 5px;
+}
+
+.claim-locked-record > span:not(.claim-locked-icon) {
+  display: grid;
+  min-width: 0;
+  gap: 4px;
+}
+
+.claim-locked-record strong {
+  overflow-wrap: anywhere;
+  color: #274567;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.claim-locked-icon {
+  display: grid;
+  width: 25px;
+  height: 25px;
+  place-items: center;
+  color: #526f91;
+  background: #e7eef7;
+  border-radius: 50%;
+}
+
+.claim-locked-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.claim-account-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px 15px;
+}
+
+.claim-password-wrap {
+  position: relative;
+}
+
+.claim-password-wrap input {
+  padding-right: 43px;
+}
+
+.claim-password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  display: grid;
+  width: 31px;
+  height: 32px;
+  place-items: center;
+  padding: 0;
+  color: #385679;
+  background: transparent;
+  border: 0;
+  transform: translateY(-50%);
+}
+
+.claim-password-toggle svg {
+  width: 15px;
+  height: 15px;
+}
+
+.claim-field-error {
+  color: #ba3434;
+  font-size: 10px;
+  line-height: 1.25;
+}
+
+.claim-login-link {
+  margin: 14px 0 0;
+  color: #6b7e97;
+  font-size: 11px;
+  text-align: center;
+}
+
+.claim-login-link a {
+  color: #1559b9;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.claim-login-link a:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 1200px) {
+  .sis-page-content {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .sis-sidebar {
+    width: 240px;
+    flex-basis: 240px;
+  }
+}
+
+@media (min-width: 900px) {
+  .student-registration-page {
+    width: calc(100% / 1.08);
+    min-height: calc(100vh / 1.08);
+    zoom: 1.08;
+  }
+}
+
+@media (max-width: 700px) {
+  .sis-sidebar {
+    position: fixed;
+    inset: 50px auto 0 0;
+    width: 210px;
+    height: calc(100vh - 50px);
+    height: calc(100dvh - 50px);
+    min-height: 0;
+    flex-basis: 210px;
+    box-shadow: 8px 0 24px rgb(13 34 65 / 15%);
+    transform: translateX(-105%);
+    transition: transform 180ms ease;
+  }
+
+  .sis-layout.is-collapsed .sis-sidebar {
+    flex-basis: 210px;
+  }
+
+  .sis-layout.is-collapsed .sis-brand {
+    justify-content: flex-start;
+    padding-right: 13px;
+    padding-left: 13px;
+  }
+
+  .sis-layout.is-collapsed .sis-brand-copy,
+  .sis-layout.is-collapsed .sis-nav-link span {
+    display: grid;
+  }
+
+  .sis-layout.is-collapsed .sis-nav-group-title > span:last-child {
+    display: inline;
+  }
+
+  .sis-layout.is-collapsed .sis-nav-link {
+    justify-content: flex-start;
+    padding: 0 11px;
+  }
+
+  .sis-sidebar.is-open {
+    transform: translateX(0);
+  }
+
+  .sis-sidebar-backdrop {
+    position: fixed;
+    z-index: 2;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    background: rgb(8 22 42 / 48%);
+    border: 0;
+  }
+
+  .sis-topbar {
+    inset: 0 0 auto;
+    height: 50px;
+    padding: 0 12px;
+  }
+
+  .sis-main {
+    padding-top: 50px;
+  }
+
+  .sis-menu-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .sis-admin-button {
+    min-height: 40px;
+  }
+
+  .sis-topbar-actions {
+    gap: 8px;
+  }
+
+  .sis-notification-popover {
+    right: -56px;
+  }
+
+  .field input,
+  .field select {
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .sis-page-content {
+    padding: 15px 12px 22px;
+  }
+
+  .sis-project-footer {
+    padding: 10px 12px;
+  }
+
+  .student-registration-main {
+    padding: 28px 16px 20px;
+  }
+}
+
+@media (max-width: 520px) {
+  .student-portal-header {
+    min-height: 58px;
+    padding: 9px 14px;
+  }
+
+  .student-portal-brand {
+    gap: 8px;
+  }
+
+  .student-portal-brand-mark {
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
+  }
+
+  .student-portal-brand strong {
+    font-size: 11px;
+  }
+
+  .student-portal-brand small {
+    font-size: 9px;
+  }
+
+  .student-portal-login {
+    font-size: 10px;
+  }
+
+  .student-registration-main {
+    padding: 23px 12px 18px;
+  }
+
+  .student-registration-intro {
+    margin-bottom: 15px;
+  }
+
+  .student-registration-intro h1 {
+    font-size: 21px;
+  }
+
+  .student-registration-intro p {
+    font-size: 11px;
+  }
+
+  .student-portal-footer {
+    padding: 12px;
+    font-size: 9px;
+  }
+
+  .claim-preview-note {
+    font-size: 10px;
+  }
+
+  .claim-card {
+    padding: 14px;
+  }
+
+  .claim-lookup-form {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 0;
+  }
+
+  .claim-button {
+    min-height: 44px;
+  }
+
+  .claim-message,
+  .claim-record-result {
+    margin-left: 0;
+  }
+
+  .claim-record-details {
+    gap: 0 10px;
+    padding-right: 9px;
+    padding-left: 9px;
+  }
+
+  .claim-record-details dd {
+    font-size: 10px;
+  }
+
+  .claim-result-actions {
+    flex-direction: column;
+  }
+
+  .claim-result-actions .claim-button {
+    width: 100%;
+  }
+
+  .claim-locked-record {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .claim-locked-icon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
+
+  .claim-account-fields {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .claim-field label {
+    font-size: 12px;
+  }
+
+  .claim-field input {
+    height: 44px;
+    font-size: 16px;
+  }
+
+  .claim-password-wrap input {
+    padding-right: 47px;
+  }
+
+  .claim-password-toggle {
+    right: 5px;
+    width: 35px;
+    height: 36px;
+  }
+
+  .claim-password-toggle svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .claim-step-heading h2 {
+    font-size: 14px;
+  }
+
+  .sis-page-heading {
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+
+  .sis-page-heading h1 {
+    font-size: 18px;
+  }
+
+  .sis-page-heading p {
+    max-width: 300px;
+  }
+
+  .registration-card {
+    padding: 12px;
+  }
+
+  .form-grid {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 11px;
+  }
+
+  .registration-section + .registration-section {
+    margin-top: 20px;
+  }
+
+  .form-actions {
+    flex-wrap: wrap;
+  }
+
+  .field label,
+  .remarks-field label {
+    font-size: 12px;
+  }
+
+  .field input,
+  .field select {
+    height: 44px;
+    font-size: 16px;
+  }
+
+  .input-with-action input {
+    padding-right: 42px;
+  }
+
+  .input-action {
+    right: 9px;
+    width: 30px;
+    height: 34px;
+  }
+
+  .input-action svg,
+  .date-input > svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .field-hint,
+  .field-error {
+    font-size: 11px;
+  }
+
+  .remarks-field textarea {
+    min-height: 96px;
+    font-size: 16px;
+  }
+
+  .button {
+    min-height: 44px;
+    padding: 9px 13px;
+    font-size: 12px;
+  }
+
+  .button svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

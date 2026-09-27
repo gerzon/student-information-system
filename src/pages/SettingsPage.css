@@ -1,0 +1,225 @@
+.settings-page {
+  display: grid;
+  gap: 16px;
+}
+
+.settings-storage-note {
+  padding: 11px 13px;
+  color: #526a85;
+  background: #f3f8ff;
+  border: 1px solid #dce9f7;
+  border-radius: 5px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.settings-panel {
+  min-width: 0;
+  padding: 19px;
+  background: #fff;
+  border: 1px solid #dfe7f1;
+  border-radius: 7px;
+  box-shadow: 0 1px 3px rgb(16 42 79 / 4%);
+}
+
+.settings-panel-heading {
+  margin-bottom: 16px;
+}
+
+.settings-panel-heading h2 {
+  margin: 0 0 4px;
+  color: #1b365c;
+  font-size: 20px;
+  font-weight: 650;
+}
+
+.settings-panel-heading p {
+  margin: 0;
+  color: #8291a4;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.settings-period-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.settings-period-card {
+  display: grid;
+  gap: 13px;
+  padding: 15px;
+  background: #f8fafd;
+  border: 1px solid #e4ebf3;
+  border-radius: 6px;
+}
+
+.settings-period-card h3 {
+  margin: 0;
+  color: #2b4361;
+  font-size: 16px;
+}
+
+.settings-date-range {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 11px;
+}
+
+.settings-activity-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: end;
+  gap: 14px;
+}
+
+.settings-period-card label,
+.settings-activity-form label {
+  display: grid;
+  min-width: 0;
+  gap: 6px;
+  color: #405976;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.settings-period-card input,
+.settings-activity-form input {
+  width: 100%;
+  min-width: 0;
+  min-height: 42px;
+  padding: 8px 10px;
+  color: #234166;
+  background: #fff;
+  border: 1px solid #d9e3ef;
+  border-radius: 5px;
+  font: inherit;
+  font-size: 14px;
+}
+
+.settings-primary-button {
+  min-height: 42px;
+  justify-self: start;
+  padding: 8px 13px;
+  color: #fff;
+  background: #1260d5;
+  border: 1px solid #1260d5;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.settings-primary-button:hover {
+  background: #0e50b4;
+}
+
+.settings-activity-details {
+  grid-column: 1 / -1;
+}
+
+.settings-activity-details > span {
+  color: #8291a4;
+  font-weight: 400;
+}
+
+.settings-feedback {
+  margin: 14px 0 0;
+  color: #286243;
+  font-size: 13px;
+}
+
+.settings-feedback.is-error {
+  color: #a83232;
+}
+
+.settings-activity-list {
+  display: grid;
+  margin-top: 18px;
+}
+
+.settings-activity-item {
+  display: grid;
+  grid-template-columns: minmax(170px, 220px) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 13px;
+  padding: 13px 2px;
+  border-top: 1px solid #e9eef5;
+}
+
+.settings-activity-date {
+  color: #55708f;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.settings-activity-item > div {
+  min-width: 0;
+}
+
+.settings-activity-item strong {
+  color: #2b4361;
+  font-size: 14px;
+}
+
+.settings-activity-item p {
+  margin: 3px 0 0;
+  color: #8291a4;
+  font-size: 13px;
+}
+
+.settings-remove-button {
+  padding: 6px 9px;
+  color: #a83232;
+  background: #fff7f7;
+  border: 1px solid #f0d7d7;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.settings-empty {
+  margin: 0;
+  padding: 18px 10px;
+  color: #8291a4;
+  border-top: 1px solid #e9eef5;
+  font-size: 13px;
+  text-align: center;
+}
+
+@media (max-width: 620px) {
+  .settings-panel {
+    padding: 15px;
+  }
+
+  .settings-period-list,
+  .settings-activity-form {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-date-range {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-activity-details {
+    grid-column: auto;
+  }
+
+  .settings-activity-item {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 6px 10px;
+  }
+
+  .settings-activity-date {
+    grid-column: 1;
+  }
+
+  .settings-activity-item > div {
+    grid-column: 1;
+  }
+
+  .settings-remove-button {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+}

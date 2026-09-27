@@ -1,0 +1,222 @@
+.my-schedule-page {
+  display: grid;
+  gap: 18px;
+  padding: 14px 12px 22px;
+}
+
+.my-schedule-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.my-schedule-summary-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 74px;
+  padding: 14px 16px;
+  background: #fff;
+  border: 1px solid #dde5f0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgb(21 52 93 / 5%);
+}
+
+.my-schedule-summary-icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  color: #1d63bb;
+  background: #e8f2fe;
+}
+
+.my-schedule-summary-icon.is-violet {
+  color: #6a4dd5;
+  background: #f3eeff;
+}
+
+.my-schedule-summary-icon.is-green {
+  color: #1b8f5a;
+  background: #eafaf1;
+}
+
+.my-schedule-summary-item span:last-child {
+  display: grid;
+  gap: 3px;
+}
+
+.my-schedule-summary-item strong {
+  color: #183761;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.my-schedule-summary-item small {
+  color: #6d8197;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.my-schedule-panel {
+  background: #fff;
+  border: 1px solid #e3ebf5;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgb(18 42 79 / 5%);
+  overflow: hidden;
+}
+
+.my-schedule-panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 18px 14px;
+  border-bottom: 1px solid #edf2f9;
+}
+
+.my-schedule-panel-heading h2 {
+  margin: 0;
+  color: #1a365d;
+  font-size: 16px;
+}
+
+.my-schedule-panel-heading p {
+  margin: 5px 0 0;
+  color: #7e8fa6;
+  font-size: 10px;
+}
+
+.my-schedule-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #1a5ab1;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.my-schedule-board {
+  display: grid;
+  grid-template-columns: 84px repeat(5, minmax(120px, 1fr));
+  min-width: 740px;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.my-schedule-time-column,
+.my-schedule-day-column {
+  display: grid;
+  grid-template-rows: 52px repeat(6, minmax(96px, 1fr));
+}
+
+.my-schedule-time-column {
+  background: #f8fafc;
+  border-right: 1px solid #ecf0f7;
+}
+
+.my-schedule-corner,
+.my-schedule-day-heading,
+.my-schedule-time {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.my-schedule-corner,
+.my-schedule-day-heading {
+  color: #23436d;
+  background: #f4f8ff;
+  border-bottom: 1px solid #edf2f8;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.my-schedule-time {
+  padding: 8px 4px;
+  border-bottom: 1px solid #edf2f8;
+  border-right: 1px solid #edf2f8;
+  color: #607691;
+  font-size: 10px;
+}
+
+.my-schedule-day-column {
+  border-right: 1px solid #edf2f8;
+}
+
+.my-schedule-slot {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 96px;
+  padding: 8px;
+  border-bottom: 1px solid #edf2f8;
+  border-right: 1px solid #edf2f8;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfcff 100%);
+}
+
+.my-schedule-card {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 9px 8px;
+  border-radius: 8px;
+  border-left: 4px solid transparent;
+  box-shadow: 0 2px 8px rgb(26 59 101 / 6%);
+}
+
+.my-schedule-card strong {
+  color: #1a365d;
+  font-size: 10px;
+  line-height: 1.35;
+}
+
+.my-schedule-card span,
+.my-schedule-card small,
+.my-schedule-card em {
+  color: #4b5d75;
+  font-size: 9px;
+  line-height: 1.4;
+  font-style: normal;
+}
+
+.my-schedule-card em {
+  color: #1d63bb;
+  font-weight: 700;
+}
+
+.my-schedule-card.is-blue {
+  background: #edf6ff;
+  border-left-color: #1d63bb;
+}
+
+.my-schedule-card.is-violet {
+  background: #f4eeff;
+  border-left-color: #6f47d0;
+}
+
+.my-schedule-card.is-green {
+  background: #ebfbf2;
+  border-left-color: #1b8f5a;
+}
+
+.my-schedule-card.is-orange {
+  background: #fff4ec;
+  border-left-color: #c96d1d;
+}
+
+@media (max-width: 700px) {
+  .my-schedule-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .my-schedule-panel-heading {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

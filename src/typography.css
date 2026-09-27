@@ -1,0 +1,280 @@
+:root {
+  font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+}
+
+body {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.sis-page-heading h1 {
+  font-size: clamp(28px, 2.2vw, 32px) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.6px;
+}
+
+.login-welcome h1,
+.student-registration-intro h1 {
+  font-size: clamp(28px, 2.4vw, 32px) !important;
+  font-weight: 700 !important;
+}
+
+.dashboard-welcome h2,
+.dashboard-panel-heading h2,
+.student-directory-heading h2,
+.employee-directory-heading h2,
+.course-directory-heading h2,
+.academic-hierarchy-heading h2,
+.section-heading,
+.claim-step-heading h2 {
+  font-size: clamp(20px, 1.7vw, 24px) !important;
+  font-weight: 600 !important;
+}
+
+.login-form-heading h2,
+.student-registration-dialog-heading h2,
+.course-modal-heading h2,
+.academic-modal-heading h2 {
+  font-size: 22px !important;
+  font-weight: 600 !important;
+}
+
+.dashboard-stat-top,
+.student-summary-copy > span,
+.employee-summary-card small,
+.course-summary-card small,
+.academic-overview-card small,
+.hierarchy-choice-card strong,
+.hierarchy-year-card strong,
+.hierarchy-course-copy strong,
+.hierarchy-section-main strong {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+}
+
+.sis-page-heading p,
+.dashboard-welcome p,
+.dashboard-panel-heading p,
+.student-directory-heading p,
+.employee-directory-heading p,
+.course-directory-heading p,
+.academic-hierarchy-heading p,
+.hierarchy-step-heading p,
+.student-registration-intro p,
+.login-welcome p {
+  font-size: 14px !important;
+  line-height: 1.55;
+}
+
+.sis-layout :is(p, li),
+.login-page :is(p, li),
+.student-registration-page :is(p, li) {
+  font-size: 15px;
+}
+
+.sis-layout label,
+.login-page label,
+.student-registration-page label {
+  font-size: 14px !important;
+  font-weight: 500;
+}
+
+.sis-layout :is(input, select, textarea),
+.login-page :is(input, select, textarea),
+.student-registration-page :is(input, select, textarea) {
+  font-size: 15px !important;
+  font-weight: 400;
+}
+
+.sis-layout button,
+.login-page button,
+.student-registration-page button,
+.student-portal-login {
+  font-size: 14px !important;
+  font-weight: 600;
+}
+
+.sis-layout table th,
+.sis-layout table thead th {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+.sis-layout table td {
+  font-size: 14px !important;
+  font-weight: 400;
+}
+
+.sis-breadcrumb,
+.sis-admin-button,
+.sis-navigation,
+.sis-sidebar,
+.dashboard-eyebrow,
+.dashboard-stat-detail,
+.dashboard-data-caption,
+.dashboard-sample-note,
+.student-directory-notice,
+.student-results-count,
+.student-status,
+.school-level-label,
+.employee-directory-notice,
+.employee-results-count,
+.employee-type-label,
+.employee-status,
+.course-directory-notice,
+.course-results-count,
+.course-status,
+.academic-hierarchy-notice,
+.academic-breadcrumb,
+.hierarchy-step-heading p,
+.hierarchy-choice-card small,
+.hierarchy-year-card small,
+.hierarchy-course-copy small,
+.hierarchy-section-detail small,
+.hierarchy-section-detail > span,
+.student-dialog-preview-note,
+.course-preview-note,
+.academic-preview-note,
+.staff-field-hint,
+.optional-label,
+.claim-optional-label,
+.login-panel-footer,
+.login-divider,
+.login-form-heading p,
+.claim-error,
+.claim-success {
+  font-size: 13px !important;
+  line-height: 1.5;
+}
+
+.sis-layout table td small,
+.sis-layout table td .student-name-cell small,
+.sis-layout table td .employee-name-cell small,
+.sis-layout table td .course-name-cell small {
+  font-size: 12px !important;
+}
+
+@media (max-width: 700px) {
+  .sis-page-heading h1,
+  .login-welcome h1,
+  .student-registration-intro h1 {
+    font-size: 28px !important;
+  }
+
+  .dashboard-welcome h2,
+  .dashboard-panel-heading h2,
+  .student-directory-heading h2,
+  .employee-directory-heading h2,
+  .course-directory-heading h2,
+  .academic-hierarchy-heading h2,
+  .section-heading,
+  .claim-step-heading h2,
+  .login-form-heading h2,
+  .student-registration-dialog-heading h2,
+  .course-modal-heading h2,
+  .academic-modal-heading h2 {
+    font-size: 20px !important;
+  }
+
+  .dashboard-stat-top,
+  .student-summary-copy > span,
+  .employee-summary-card small,
+  .course-summary-card small,
+  .academic-overview-card small,
+  .hierarchy-choice-card strong,
+  .hierarchy-year-card strong,
+  .hierarchy-course-copy strong,
+  .hierarchy-section-main strong {
+    font-size: 16px !important;
+  }
+
+  .sis-layout label,
+  .login-page label,
+  .student-registration-page label {
+    font-size: 14px !important;
+  }
+
+  .sis-layout :is(input, select, textarea),
+  .login-page :is(input, select, textarea),
+  .student-registration-page :is(input, select, textarea) {
+    font-size: 16px !important;
+  }
+
+  .sis-layout button,
+  .login-page button,
+  .student-registration-page button,
+  .student-portal-login {
+    font-size: 15px !important;
+  }
+
+  .sis-layout table th,
+  .sis-layout table thead th,
+  .sis-layout table td {
+    font-size: 14px !important;
+  }
+
+  .sis-breadcrumb,
+  .sis-admin-button,
+  .sis-navigation,
+  .sis-sidebar,
+  .dashboard-eyebrow,
+  .dashboard-stat-detail,
+  .dashboard-data-caption,
+  .dashboard-sample-note,
+  .student-directory-notice,
+  .student-results-count,
+  .student-status,
+  .school-level-label,
+  .employee-directory-notice,
+  .employee-results-count,
+  .employee-type-label,
+  .employee-status,
+  .course-directory-notice,
+  .course-results-count,
+  .course-status,
+  .academic-hierarchy-notice,
+  .academic-breadcrumb,
+  .hierarchy-step-heading p,
+  .hierarchy-choice-card small,
+  .hierarchy-year-card small,
+  .hierarchy-course-copy small,
+  .hierarchy-section-detail small,
+  .hierarchy-section-detail > span,
+  .student-dialog-preview-note,
+  .course-preview-note,
+  .academic-preview-note,
+  .staff-field-hint,
+  .optional-label,
+  .claim-optional-label,
+  .login-panel-footer,
+  .login-divider,
+  .login-form-heading p,
+  .claim-error,
+  .claim-success {
+    font-size: 13px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .sis-page-heading h1,
+  .login-welcome h1,
+  .student-registration-intro h1 {
+    font-size: 24px !important;
+    letter-spacing: -0.3px;
+  }
+
+  .sis-page-heading p,
+  .dashboard-welcome p,
+  .dashboard-panel-heading p,
+  .student-directory-heading p,
+  .employee-directory-heading p,
+  .course-directory-heading p,
+  .academic-hierarchy-heading p,
+  .hierarchy-step-heading p,
+  .student-registration-intro p,
+  .login-welcome p {
+    font-size: 13px !important;
+  }
+}

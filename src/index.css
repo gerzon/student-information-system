@@ -1,0 +1,98 @@
+:root {
+  font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+  color: #18345d;
+  background: #f2f7fd;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  font-optical-sizing: auto;
+  font-weight: 400;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgb(37 99 235 / 25%);
+  outline-offset: 1px;
+}
+
+@media (max-width: 700px) {
+  .sis-page-content {
+    min-width: 0;
+  }
+
+  .sis-layout,
+  .sis-main {
+    min-width: 0;
+  }
+
+  .sis-nav-link {
+    min-height: 40px;
+  }
+
+  .sis-nav-group-title {
+    min-height: 28px;
+  }
+
+  .sis-menu-button,
+  .sis-admin-button {
+    min-height: 40px;
+  }
+
+  .sis-page-heading {
+    min-width: 0;
+    align-items: flex-start;
+  }
+
+  .sis-page-heading > div {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .sis-page-content {
+    padding-right: 14px;
+    padding-left: 10px;
+  }
+
+  .sis-page-heading {
+    gap: 10px;
+  }
+
+  .sis-page-heading h1 {
+    overflow-wrap: anywhere;
+  }
+
+  .sis-page-heading p {
+    overflow-wrap: anywhere;
+  }
+}

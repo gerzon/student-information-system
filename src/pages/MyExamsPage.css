@@ -1,0 +1,99 @@
+.my-exams-page {
+  display: grid;
+  min-height: 320px;
+  place-items: start center;
+  padding: 26px 12px;
+}
+
+.my-exams-card {
+  width: min(100%, 430px);
+  padding: 23px;
+  background: #fff;
+  border: 1px solid #dfe7f1;
+  border-radius: 7px;
+  box-shadow: 0 2px 8px rgb(16 42 79 / 5%);
+}
+
+.my-exams-icon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  color: #1d63bb;
+  background: #e8f2fe;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.my-exams-card h2 {
+  margin: 15px 0 5px;
+  color: #1b365c;
+  font-size: 16px;
+}
+
+.my-exams-card > p {
+  margin: 0;
+  color: #70829a;
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.my-exams-form {
+  display: grid;
+  gap: 8px;
+  margin-top: 17px;
+}
+
+.my-exams-form label {
+  color: #405976;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.my-exams-form input {
+  width: 100%;
+  height: 38px;
+  padding: 0 10px;
+  color: #234166;
+  background: #fff;
+  border: 1px solid #d9e3ef;
+  border-radius: 4px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+}
+
+.my-exams-form input:focus {
+  border-color: #4385dd;
+  outline: 0;
+  box-shadow: 0 0 0 3px rgb(38 111 207 / 10%);
+}
+
+.my-exams-form button {
+  min-height: 36px;
+  margin-top: 3px;
+  color: #fff;
+  background: #1260d5;
+  border: 1px solid #1260d5;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.my-exams-form button:hover {
+  background: #0e50b4;
+}
+
+.my-exams-error {
+  margin: 0;
+  color: #b33c3c;
+  font-size: 9px;
+}
+
+.my-exams-card > .my-exams-note {
+  margin-top: 13px;
+  padding-top: 11px;
+  border-top: 1px solid #e9eef5;
+  font-size: 9px;
+}
