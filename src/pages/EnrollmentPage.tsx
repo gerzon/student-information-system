@@ -50,7 +50,7 @@ function EnrollmentPage() {
 
   return (
     <SisLayout
-      active="Enrollments"
+      active="Enrollment"
       breadcrumb="Enrollment Management"
       breadcrumbRoot="Students"
       breadcrumbHref="#students"

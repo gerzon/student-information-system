@@ -13,78 +13,65 @@ type NavigationItem = {
   activeLabels?: string[]
 }
 
-const navigation: { label: string; emoji: string; items: NavigationItem[] }[] = [
-  {
-    label: '',
-    emoji: '',
-    items: [{ label: 'Dashboard', icon: 'home', href: '#dashboard' }],
-  },
-  {
-    label: 'STUDENT MANAGEMENT',
-    emoji: '👥',
-    items: [
-      { label: 'Students', icon: 'students', href: '#students' },
-      { label: 'Enrollments', icon: 'students', href: '#enrollments' },
-      { label: 'Sections', icon: 'sections', href: '#sections' },
-      { label: 'Courses', icon: 'courses', href: '#courses' },
-      { label: 'Subjects', icon: 'courses', href: '#subjects' },
-    ],
-  },
-  {
-    label: 'ACADEMIC',
-    emoji: '👨‍🏫',
-    items: [
-      { label: 'Faculty & Staff', icon: 'users', href: '#users' },
-      { label: 'Class Schedule', icon: 'calendar', href: '#class-schedule' },
-      { label: 'Grades', icon: 'grades', href: '#grades' },
-      {
-        label: 'Exam Management',
-        icon: 'studentsexam',
-        href: "#student's%20exam",
-        activeLabels: ["Student's Exam"],
-      },
-      { label: 'QR Attendance', icon: 'qrcodeattendance', href: '#qr%20attendance' },
-    ],
-  },
-  {
-    label: 'STUDENT',
-    emoji: '👨‍🎓',
-    items: [
-      { label: 'My Exams', icon: 'student_own_exam', href: '#my%20exams' },
-      { label: 'My Schedule', icon: 'calendar', href: '#my%20schedule' },
-      { label: 'My Grades', icon: 'grades', href: '#my%20grades' },
-      { label: 'My Attendance', icon: 'qrcodeattendance', href: '#my%20attendance' },
-    ],
-  },
-  {
-    label: 'COMMUNICATION',
-    emoji: '📢',
-    items: [
-      { label: 'Announcements', icon: 'reports' },
-      { label: 'Notifications', icon: 'reports' },
-    ],
-  },
-  {
-    label: 'SERVICES',
-    emoji: '📄',
-    items: [{ label: 'Document Requests', icon: 'reports' }],
-  },
-  {
-    label: 'REPORTS',
-    emoji: '📊',
-    items: [{ label: 'Reports', icon: 'reports' }],
-  },
-  {
-    label: 'SYSTEM',
-    emoji: '⚙️',
-    items: [
-      { label: 'Users', icon: 'users', href: '#users' },
-      { label: 'Settings', icon: 'settings', href: '#settings' },
-    ],
-  },
-]
+export type SisPortalRole = 'student' | 'faculty' | 'admin'
+
+const navigationByRole: Record<SisPortalRole, { label: string; emoji: string; items: NavigationItem[] }[]> = {
+  admin: [
+    {
+      label: '',
+      emoji: '',
+      items: [{ label: 'Dashboard', icon: 'home', href: '#dashboard' }],
+    },
+    {
+      label: 'ADMINISTRATION',
+      emoji: '⚙️',
+      items: [
+        { label: 'Users', icon: 'users', href: '#users' },
+        { label: 'Students', icon: 'students', href: '#students' },
+        { label: 'Faculty/Staff', icon: 'users', href: '#admin/faculty-staff', activeLabels: ['Faculty & Staff'] },
+        { label: 'Programs', icon: 'courses', href: '#courses', activeLabels: ['Courses'] },
+        { label: 'Subjects', icon: 'courses', href: '#subjects' },
+        { label: 'Sections', icon: 'sections', href: '#sections' },
+        { label: 'Scheduling', icon: 'calendar', href: '#class-schedule' },
+        { label: 'Enrollment', icon: 'students', href: '#enrollments' },
+        { label: 'System Settings', icon: 'settings', href: '#settings', activeLabels: ['Settings'] },
+      ],
+    },
+  ],
+  student: [
+    {
+      label: 'STUDENT PORTAL',
+      emoji: '🎓',
+      items: [
+        { label: 'Dashboard', icon: 'home', href: '#student/dashboard' },
+        { label: 'My Profile', icon: 'user', href: '#student/profile' },
+        { label: 'Enrollment', icon: 'students', href: '#student/enrollment' },
+        { label: 'Subjects', icon: 'courses', href: '#student/subjects' },
+        { label: 'Grades', icon: 'grades', href: '#my%20grades', activeLabels: ['My Grades'] },
+        { label: 'Schedule', icon: 'calendar', href: '#my%20schedule', activeLabels: ['My Schedule'] },
+        { label: 'Announcements', icon: 'reports', href: '#student/announcements' },
+      ],
+    },
+  ],
+  faculty: [
+    {
+      label: 'FACULTY & STAFF',
+      emoji: '👨‍🏫',
+      items: [
+        { label: 'Dashboard', icon: 'home', href: '#faculty/dashboard' },
+        { label: 'Students', icon: 'students', href: '#faculty/students', activeLabels: ['Students'] },
+        { label: 'Classes', icon: 'sections', href: '#faculty/classes', activeLabels: ['Classes'] },
+        { label: 'Attendance', icon: 'qrcodeattendance', href: '#faculty/attendance', activeLabels: ['Attendance'] },
+        { label: 'Grades', icon: 'grades', href: '#faculty/grades', activeLabels: ['Grades'] },
+        { label: 'Schedule', icon: 'calendar', href: '#faculty/schedule', activeLabels: ['Schedule'] },
+        { label: 'Reports', icon: 'reports', href: '#faculty/reports' },
+      ],
+    },
+  ],
+}
 
 type SisLayoutProps = {
+  role?: SisPortalRole
   active: string
   breadcrumb: string
   breadcrumbRoot?: string
@@ -96,15 +83,18 @@ type SisLayoutProps = {
 }
 
 function SisLayout({
+  role = 'admin',
   active,
   breadcrumb,
   breadcrumbRoot = 'Dashboard',
-  breadcrumbHref = '#dashboard',
+  breadcrumbHref = role === 'admin' ? '#dashboard' : role === 'student' ? '#student/dashboard' : '#faculty/dashboard',
   title,
   subtitle,
   icon,
   children,
 }: SisLayoutProps) {
+  const accountName = role === 'student' ? 'Juan' : role === 'faculty' ? 'Faculty' : 'Admin'
+  const accountTitle = role === 'student' ? 'Student' : role === 'faculty' ? 'Faculty/Staff' : 'Systems Administrator'
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   const [adminMenuOpen, setAdminMenuOpen] = useState(false)
@@ -203,11 +193,11 @@ function SisLayout({
     : []
 
   return (
-    <div className={`sis-layout${sidebarCollapsed ? ' is-collapsed' : ''}`}>
+    <div className={`sis-layout sis-layout--${role}${role !== 'admin' ? ' is-portal-redesign' : ''}${sidebarCollapsed ? ' is-collapsed' : ''}`}>
       <aside className={`sis-sidebar${mobileMenuOpen ? ' is-open' : ''}`}>
         <a
           className="sis-brand"
-          href="#dashboard"
+          href={role === 'admin' ? '#dashboard' : role === 'student' ? '#student/dashboard' : '#faculty/dashboard'}
           aria-label="PAPSI College Ormoc home"
         >
           <span className="sis-brand-mark">
@@ -219,8 +209,8 @@ function SisLayout({
           </span>
         </a>
 
-        <nav className="sis-navigation" aria-label="Main navigation">
-          {navigation.map((group) => (
+        <nav className="sis-navigation" aria-label={`${role === 'student' ? 'Student' : role === 'faculty' ? 'Faculty and staff' : 'Admin'} navigation`}>
+          {navigationByRole[role].map((group) => (
             <div className="sis-nav-group" key={group.label || 'dashboard'}>
               {group.label && (
                 <h2 className="sis-nav-group-title">
@@ -279,6 +269,21 @@ function SisLayout({
 
       <main className="sis-main">
         <header className="sis-topbar">
+          {role !== 'admin' && (
+            <a
+              className="sis-portal-topbar-brand"
+              href={role === 'student' ? '#student/dashboard' : '#faculty/dashboard'}
+              aria-label={`PAPSI College Ormoc ${role === 'student' ? 'Student' : 'Faculty/Staff'} Portal home`}
+            >
+              <img src="/papsi_logo%20(2).png" alt="" />
+              <span>
+                <strong>PAPSI College Ormoc</strong>
+                <small>{role === 'student' ? 'Student Portal' : 'Faculty/Staff Portal'}</small>
+              </span>
+              <span className="sis-portal-topbar-divider" aria-hidden="true" />
+              <span className="sis-portal-topbar-role">{role === 'student' ? 'Student Portal' : 'Faculty/Staff Portal'}</span>
+            </a>
+          )}
           <button
             type="button"
             className="sis-menu-button"
@@ -375,11 +380,11 @@ function SisLayout({
                 <span className="sis-admin-avatar">
                   <SisIcon name="user" />
                 </span>
-                <span>Admin</span>
+                <span>{accountName}</span>
                 <SisIcon name="chevron" />
               </button>
               {adminMenuOpen && (
-                <div className="sis-admin-dropdown" role="menu" aria-label="Admin menu">
+                <div className="sis-admin-dropdown" role="menu" aria-label={`${accountTitle} menu`}>
                   <button
                     type="button"
                     role="menuitem"
@@ -395,7 +400,7 @@ function SisLayout({
                     role="menuitem"
                     onClick={() => {
                       setAdminMenuOpen(false)
-                      window.location.hash = '#login'
+                      window.location.hash = '#landing'
                     }}
                   >
                     Logout
@@ -421,8 +426,8 @@ function SisLayout({
             >
               <div className="sis-profile-heading">
                 <div>
-                  <h2 id="sis-profile-title">Admin profile</h2>
-                  <p>Administrator account</p>
+                  <h2 id="sis-profile-title">{accountTitle} profile</h2>
+                  <p>{accountTitle} account</p>
                 </div>
                 <button
                   type="button"
@@ -437,26 +442,26 @@ function SisLayout({
                   <SisIcon name="user" />
                 </span>
                 <div>
-                  <strong>Admin</strong>
-                  <span>Systems Administrator</span>
+                  <strong>{role === 'student' ? 'Juan Dela Cruz' : role === 'faculty' ? 'J. Ramos' : 'Admin'}</strong>
+                  <span>{accountTitle}</span>
                 </div>
               </div>
               <p className="sis-profile-note">
-                Profile details will be available when administrator accounts
-                are connected to the authentication service.
+                Profile details will be available when accounts are connected
+                to the authentication service.
               </p>
             </section>
           </div>
         )}
 
         <div className="sis-page-content">
-          <div className="sis-breadcrumb" aria-label="Breadcrumb">
+          {!(role !== 'admin' && active === 'Dashboard') && <div className="sis-breadcrumb" aria-label="Breadcrumb">
             <a href={breadcrumbHref}>{breadcrumbRoot}</a>
             <span aria-hidden="true">›</span>
             <span>{breadcrumb}</span>
-          </div>
+          </div>}
 
-          <div className="sis-page-heading">
+          {!(role !== 'admin' && active === 'Dashboard') && <div className="sis-page-heading">
             <span className="sis-heading-icon">
               <SisIcon name={icon} />
             </span>
@@ -464,7 +469,7 @@ function SisLayout({
               <h1>{title}</h1>
               <p>{subtitle}</p>
             </div>
-          </div>
+          </div>}
           {children}
         </div>
         <footer className="sis-project-footer">

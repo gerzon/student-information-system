@@ -43,6 +43,7 @@ function MySchedulePage() {
 
   return (
     <SisLayout
+      role="student"
       active="My Schedule"
       breadcrumb="My Schedule"
       breadcrumbRoot="My Schedule"

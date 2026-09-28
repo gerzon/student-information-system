@@ -83,6 +83,7 @@ function MyGradesPage() {
 
   return (
     <SisLayout
+      role="student"
       active="My Grades"
       breadcrumb="My Grades"
       breadcrumbRoot="My Grades"

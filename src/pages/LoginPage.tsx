@@ -16,7 +16,7 @@ function LoginPage() {
     <main className="login-page">
       <section className="login-card" aria-labelledby="login-title">
         <div className="login-brand-panel">
-          <a className="login-brand" href="#login" aria-label="PAPSI College Ormoc home">
+          <a className="login-brand" href="#landing" aria-label="PAPSI College Ormoc home">
             <span className="login-brand-mark" aria-hidden="true">
               <img src="/papsi_logo%20(2).png" alt="" />
             </span>
@@ -160,8 +160,8 @@ function LoginPage() {
           <p className="login-register-prompt">
             Student? <a href="#register">Claim your account</a>
           </p>
-          <a className="login-dashboard-preview" href="#dashboard">
-            Preview the dashboard
+          <a className="login-dashboard-preview" href="#landing">
+            Back to portal selection
           </a>
         </div>
       </section>

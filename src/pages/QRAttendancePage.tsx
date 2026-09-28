@@ -2,10 +2,11 @@ import { useState, type ReactNode } from 'react'
 import { initialAcademicLevels } from './AcademicData'
 import './AcademicHierarchyPage.css'
 import SisLayout from './SisLayout'
+import type { SisPortalRole } from './SisLayout'
 import { SisIcon } from './SisIcon'
 import './QRAttendancePage.css'
 
-function QRAttendancePage() {
+function QRAttendancePage({ role = 'admin' }: { role?: SisPortalRole }) {
   const [selectedLevelId, setSelectedLevelId] = useState('')
   const [selectedDepartmentId, setSelectedDepartmentId] = useState('')
   const [selectedCourseId, setSelectedCourseId] = useState('')
@@ -56,7 +57,8 @@ function QRAttendancePage() {
 
   return (
     <SisLayout
-      active="QR Attendance"
+      role={role}
+      active={role === 'faculty' ? 'Attendance' : 'QR Attendance'}
       breadcrumb="QR Attendance"
       breadcrumbRoot="QR Attendance"
       breadcrumbHref="#qr%20attendance"

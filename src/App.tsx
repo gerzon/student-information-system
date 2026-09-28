@@ -21,9 +21,29 @@ import StudentDirectory from './pages/StudentDirectory'
 import SubjectManagementPage from './pages/SubjectManagementPage'
 import SettingsPage from './pages/SettingsPage'
 import User_Student_Registration from './pages/User_Student_Registration'
+import {
+  PortalDashboardPage,
+  PortalFeaturePage,
+  PortalLandingPage,
+} from './pages/PortalPages'
 
 type Page =
+  | 'landing'
   | 'dashboard'
+  | 'student-dashboard'
+  | 'student-profile'
+  | 'student-enrollment'
+  | 'student-subjects'
+  | 'student-announcements'
+  | 'faculty-dashboard'
+  | 'faculty-students'
+  | 'faculty-classes'
+  | 'faculty-attendance'
+  | 'faculty-grades'
+  | 'faculty-schedule'
+  | 'faculty-reports'
+  | 'admin-faculty-staff'
+  | 'admin-users'
   | 'courses'
   | 'class-schedule'
   | 'employee-registration'
@@ -50,6 +70,19 @@ function getCurrentPage(): Page {
     .replace(/%27/gi, "'")
     .toLowerCase()
   if (hash === '#register') return 'register'
+  if (hash === '#student/dashboard') return 'student-dashboard'
+  if (hash === '#student/profile') return 'student-profile'
+  if (hash === '#student/enrollment') return 'student-enrollment'
+  if (hash === '#student/subjects') return 'student-subjects'
+  if (hash === '#student/announcements') return 'student-announcements'
+  if (hash === '#faculty/dashboard') return 'faculty-dashboard'
+  if (hash === '#faculty/students') return 'faculty-students'
+  if (hash === '#faculty/classes') return 'faculty-classes'
+  if (hash === '#faculty/attendance') return 'faculty-attendance'
+  if (hash === '#faculty/grades') return 'faculty-grades'
+  if (hash === '#faculty/schedule') return 'faculty-schedule'
+  if (hash === '#faculty/reports') return 'faculty-reports'
+  if (hash === '#admin/faculty-staff') return 'admin-faculty-staff'
   if (hash === '#students') return 'students'
   if (hash === '#enrollments') return 'enrollments'
   if (hash === '#courses') return 'courses'
@@ -66,8 +99,10 @@ function getCurrentPage(): Page {
   if (hash === '#my schedule' || hash === '#my-schedule') return 'my-schedule'
   if (window.location.hash.startsWith('#exam-session/')) return 'exam-session'
   if (hash === '#users/register') return 'employee-registration'
-  if (hash === '#users') return 'users'
-  if (hash === '' || hash === '#login') return 'login'
+  if (hash === '#users') return 'admin-users'
+  if (hash === '#landing') return 'landing'
+  if (hash === '#login') return 'login'
+  if (hash === '') return 'landing'
   return 'dashboard'
 }
 
@@ -81,6 +116,21 @@ function App() {
   }, [])
 
   if (page === 'register') return <User_Student_Registration />
+  if (page === 'landing') return <PortalLandingPage />
+  if (page === 'student-dashboard') return <PortalDashboardPage portal="student" />
+  if (page === 'student-profile') return <PortalFeaturePage portal="student" feature="profile" />
+  if (page === 'student-enrollment') return <PortalFeaturePage portal="student" feature="enrollment" />
+  if (page === 'student-subjects') return <PortalFeaturePage portal="student" feature="subjects" />
+  if (page === 'student-announcements') return <PortalFeaturePage portal="student" feature="announcements" />
+  if (page === 'faculty-dashboard') return <PortalDashboardPage portal="faculty" />
+  if (page === 'faculty-students') return <StudentDirectory role="faculty" />
+  if (page === 'faculty-classes') return <PortalFeaturePage portal="faculty" feature="classes" />
+  if (page === 'faculty-attendance') return <QRAttendancePage role="faculty" />
+  if (page === 'faculty-grades') return <GradesPage role="faculty" />
+  if (page === 'faculty-schedule') return <ClassSchedulePage role="faculty" activeLabel="Schedule" />
+  if (page === 'faculty-reports') return <PortalFeaturePage portal="faculty" feature="reports" />
+  if (page === 'admin-faculty-staff') return <EmployeeDirectory />
+  if (page === 'admin-users') return <PortalFeaturePage portal="admin" feature="users" />
   if (page === 'students') return <StudentDirectory />
   if (page === 'enrollments') return <EnrollmentPage />
   if (page === 'courses') return <CourseHierarchyDirectory />

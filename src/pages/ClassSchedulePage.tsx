@@ -1,6 +1,7 @@
 import { useMemo, useRef, useState, type FormEvent, type KeyboardEvent } from 'react'
 import { readSheet } from 'read-excel-file/browser'
 import SisLayout from './SisLayout'
+import type { SisPortalRole } from './SisLayout'
 import { SisIcon } from './SisIcon'
 import './ClassSchedulePage.css'
 
@@ -130,7 +131,13 @@ const initialSchedule: ScheduleEntry[] = [
   { id: 7, subject: 'Physical Education 4', code: 'PE 4', section: 'BSIT 2-B', instructor: 'C. Garcia', room: 'Gymnasium', day: 'Friday', start: '1:00 PM', end: '2:30 PM', color: 'green' },
 ]
 
-function ClassSchedulePage() {
+function ClassSchedulePage({
+  role = 'admin',
+  activeLabel = 'Scheduling',
+}: {
+  role?: SisPortalRole
+  activeLabel?: string
+}) {
   const [schedule, setSchedule] = useState(initialSchedule)
   const [selectedSection, setSelectedSection] = useState('All sections')
   const [selectedDay, setSelectedDay] = useState('All days')
@@ -255,7 +262,8 @@ function ClassSchedulePage() {
 
   return (
     <SisLayout
-      active="Class Schedule"
+      role={role}
+      active={activeLabel}
       breadcrumb="Class Schedule"
       title="Class Schedule"
       subtitle="Plan and review weekly class assignments for every section."

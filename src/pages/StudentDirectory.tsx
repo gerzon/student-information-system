@@ -105,7 +105,7 @@ const levelFilters: LevelFilter[] = [
   'Tertiary',
 ]
 
-function StudentDirectory() {
+function StudentDirectory({ role = 'admin' }: { role?: 'admin' | 'faculty' }) {
   const [levelFilter, setLevelFilter] = useState<LevelFilter>('All')
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('All')
   const [search, setSearch] = useState('')
@@ -199,6 +199,7 @@ function StudentDirectory() {
 
   return (
     <SisLayout
+      role={role}
       active="Students"
       breadcrumb="Student Directory"
       breadcrumbRoot="Students"

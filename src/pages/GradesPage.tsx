@@ -10,6 +10,7 @@ import {
 } from './AcademicData'
 import { loadSubjectsForClass } from './AcademicSubjects'
 import SisLayout from './SisLayout'
+import type { SisPortalRole } from './SisLayout'
 import { SisIcon } from './SisIcon'
 import './GradesPage.css'
 
@@ -138,7 +139,7 @@ function getRoster(section: Section, level: EducationLevel): GradeStudent[] {
   }))
 }
 
-function GradesPage() {
+function GradesPage({ role = 'admin' }: { role?: SisPortalRole }) {
   const [levels] = useState(initialAcademicLevels)
   const [levelId, setLevelId] = useState('')
   const [departmentId, setDepartmentId] = useState('')
@@ -332,6 +333,7 @@ function GradesPage() {
 
   return (
     <SisLayout
+      role={role}
       active="Grades"
       breadcrumb="Grade Entry"
       breadcrumbRoot="Grades"
