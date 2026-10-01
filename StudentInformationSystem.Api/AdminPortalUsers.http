@@ -1,0 +1,71 @@
+@baseUrl = http://localhost:5121
+@token = replace-with-admin-access-token
+@positionId = replace-with-position-guid
+@secondPositionId = replace-with-second-position-guid
+@designationId = replace-with-designation-guid
+@secondDesignationId = replace-with-second-designation-guid
+@portalUserId = replace-with-front-end-user-id
+
+### List front-end user accounts
+GET {{baseUrl}}/api/admin/portal-users
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Create a front-end user with multiple position and designation assignments
+POST {{baseUrl}}/api/admin/portal-users
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "firstName": "Alex",
+  "lastName": "Morgan",
+  "email": "alex.morgan@example.com",
+  "password": "Change-this-Password-123!",
+  "positionIds": ["{{positionId}}", "{{secondPositionId}}"],
+  "designationIds": ["{{designationId}}", "{{secondDesignationId}}"]
+}
+
+### Get a front-end user
+GET {{baseUrl}}/api/admin/portal-users/{{portalUserId}}
+Authorization: ****** 
+Accept: application/json
+
+### Update a front-end user's profile and assignments
+PUT {{baseUrl}}/api/admin/portal-users/{{portalUserId}}
+Authorization: ****** 
+Content-Type: application/json
+
+{
+  "firstName": "Alex",
+  "lastName": "Morgan",
+  "email": "alex.morgan@example.com",
+  "positionIds": ["{{positionId}}"],
+  "designationIds": ["{{designationId}}"]
+}
+
+### Reset a front-end user's password
+POST {{baseUrl}}/api/admin/portal-users/{{portalUserId}}/reset-password
+Authorization: ****** 
+Content-Type: application/json
+
+{
+  "password": "Replace-with-Strong-Password-123!"
+}
+
+### Delete a front-end user
+DELETE {{baseUrl}}/api/admin/portal-users/{{portalUserId}}
+Authorization: ****** 
+
+### Create a front-end user without catalog assignments
+POST {{baseUrl}}/api/admin/portal-users
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "firstName": "Jamie",
+  "lastName": "Lee",
+  "email": "jamie.lee@example.com",
+  "password": "Change-this-Password-123!",
+  "positionIds": [],
+  "designationIds": []
+}

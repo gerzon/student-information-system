@@ -1,0 +1,79 @@
+# Configure ConnectionStrings__DefaultConnection, Jwt__SigningKey (32+ UTF-8 bytes),
+# BootstrapAdmin__Email, and BootstrapAdmin__Password before starting the API.
+@baseUrl = http://localhost:5121
+@token = replace-with-admin-access-token
+@studentId = replace-with-student-guid
+@adminId = replace-with-admin-id
+
+### Sign in as the bootstrap administrator
+POST {{baseUrl}}/api/admin-auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "replace-with-bootstrap-password"
+}
+
+### List students
+GET {{baseUrl}}/api/student
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Get one student
+GET {{baseUrl}}/api/student/{{studentId}}
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Create a student
+POST {{baseUrl}}/api/student
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "studentNumber": "STU-1001",
+  "firstName": "Alex",
+  "lastName": "Morgan",
+  "email": "alex.morgan@example.com",
+  "enrollmentDate": "2026-09-01"
+}
+
+### Update a student
+PUT {{baseUrl}}/api/student/{{studentId}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "studentNumber": "STU-1001",
+  "firstName": "Alex",
+  "lastName": "Morgan",
+  "email": "alex.morgan@example.com",
+  "enrollmentDate": "2026-09-01"
+}
+
+### Delete a student
+DELETE {{baseUrl}}/api/student/{{studentId}}
+Authorization: Bearer {{token}}
+
+### List administrator accounts
+GET {{baseUrl}}/api/admins
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Get one administrator account
+GET {{baseUrl}}/api/admins/{{adminId}}
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Create an administrator account
+POST {{baseUrl}}/api/admins
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "email": "second.admin@example.com",
+  "password": "Change-this-Password-123!"
+}
+
+### Delete an administrator account (cannot delete yourself or the last administrator)
+DELETE {{baseUrl}}/api/admins/{{adminId}}
+Authorization: Bearer {{token}}
