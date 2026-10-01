@@ -73,3 +73,31 @@ export default defineConfig([
 ])
 
 ```
+
+## Admin API integration
+
+The Vite development server proxies `/api` requests to the ASP.NET Core API at
+`http://localhost:5121`. Start that API before signing in through the admin login page.
+The admin dashboard and console use the administrator login endpoint, then fetch the
+summary and recent students from `GET /api/admin/dashboard` with the returned bearer token.
+Only one active session is allowed per administrator account. Use Logout to release it;
+otherwise the next sign-in is available after the one-hour token expires. The API requires
+the `AdminLoginSessions` database migration before it can start with this session enforcement.
+Apply the pending migrations from the API project directory with `dotnet ef database update`
+before restarting the API.
+
+The administrator console manages positions, designations, and access-level catalog entries
+through the authenticated `/api/admin/catalogs/{catalogType}` endpoints (`positions`,
+`designations`, and `access-levels`). These entries are reference data only; access levels do
+not currently grant permissions or change authorization behavior.
+
+System administrator creation remains under **System Administrators**. Create generic
+front-end sign-in accounts separately under **Front-end Users**. Assign any number of
+positions and designations using drag-and-drop on that page; assignments are optional and do
+not grant administrator access. The shared sign-in endpoint authenticates these accounts with
+a generic front-end role. Apply the `PortalUserProfiles` and `PortalUserCatalogAssignments`
+migrations before creating front-end users.
+
+For deployments where the API is hosted on a different origin, set `VITE_API_BASE_URL` to
+the API origin (for example, `https://api.example.com`) and configure the API host to allow
+the frontend origin. Leave it unset when using the local Vite proxy.

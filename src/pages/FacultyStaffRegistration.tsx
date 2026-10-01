@@ -26,10 +26,10 @@ function FacultyStaffRegistration() {
     >
       <div className="staff-registration-page">
         <div className="staff-registration-note">
-          <strong>Admin account setup</strong>
+          <strong>Front-end user account setup</strong>
           <span>
-            Use this form for faculty and staff. Students should claim their
-            school-registered record from the student portal.
+            Use Front-end Users to create Student, Faculty, or Staff accounts.
+            Create system administrator accounts separately from Users.
           </span>
         </div>
 
@@ -116,7 +116,6 @@ function FacultyStaffRegistration() {
                   required
                 >
                   <option value="" disabled>Select employee type</option>
-                  <option value="system_admin">Systems Administrator</option>
                   <option value="faculty">Faculty</option>
                   <option value="staff">Staff</option>
                 </select>

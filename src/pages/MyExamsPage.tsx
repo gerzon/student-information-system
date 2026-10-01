@@ -28,6 +28,7 @@ function MyExamsPage() {
 
   return (
     <SisLayout
+      role="student"
       active="My Exams"
       breadcrumb="My Exams"
       breadcrumbRoot="My Exams"

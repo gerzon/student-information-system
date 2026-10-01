@@ -12,6 +12,7 @@ import {
   type ExamRecord,
 } from './ExamStorage'
 import SisLayout from './SisLayout'
+import type { SisPortalRole } from './SisLayout'
 import { SisIcon } from './SisIcon'
 import './AcademicHierarchyPage.css'
 import './StudentsExamPage.css'
@@ -27,7 +28,13 @@ function formatExamDate(value: string) {
   }).format(new Date(`${value}T00:00:00`))
 }
 
-function StudentsExamPage() {
+function StudentsExamPage({
+  role = 'admin',
+  activeLabel = "Student's Exam",
+}: {
+  role?: SisPortalRole
+  activeLabel?: string
+}) {
   const [levelId, setLevelId] = useState('')
   const [departmentId, setDepartmentId] = useState('')
   const [courseId, setCourseId] = useState('')
@@ -232,7 +239,8 @@ function StudentsExamPage() {
 
   return (
     <SisLayout
-      active="Student's Exam"
+      role={role}
+      active={activeLabel}
       breadcrumb="Exam Management"
       breadcrumbRoot="Student's Exam"
       breadcrumbHref="#student's%20exam"

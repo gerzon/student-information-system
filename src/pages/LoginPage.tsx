@@ -1,15 +1,44 @@
 import { useState, type FormEvent } from 'react'
+import { saveAdminSession, savePortalSession, signInUser } from '../api/adminApi'
 import './LoginPage.css'
 
 function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
   const [notice, setNotice] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    setNotice(
-      'Login is ready to connect. Configure your authentication service to verify your account.',
-    )
+    const formData = new FormData(event.currentTarget)
+    const email = String(formData.get('email') ?? '').trim()
+    const password = String(formData.get('password') ?? '')
+    setIsSubmitting(true)
+    setNotice('')
+
+    try {
+      const session = await signInUser(email, password)
+      if (session.role === 'Administrator') {
+        saveAdminSession(session)
+        window.location.hash = '#dashboard'
+      } else {
+        savePortalSession({ ...session, role: session.role })
+        window.location.hash = session.role === 'User'
+          ? '#faculty/dashboard'
+          : session.role === 'Student'
+            ? '#student/dashboard'
+            : '#faculty/dashboard'
+      }
+    } catch (error: unknown) {
+      setNotice(
+        error instanceof TypeError
+          ? 'Could not reach the API. Check that the API is running and try again.'
+          : error instanceof Error
+            ? error.message
+            : 'Could not sign in. Please try again.',
+      )
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -143,8 +172,8 @@ function LoginPage() {
               <span>Remember me</span>
             </label>
 
-            <button className="login-submit-button" type="submit">
-              Sign in
+            <button className="login-submit-button" type="submit" disabled={isSubmitting}>
+              {isSubmitting ? 'Signing in…' : 'Sign in'}
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M5 12h14m-6-6 6 6-6 6" />
               </svg>

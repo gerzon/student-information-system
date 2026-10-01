@@ -424,6 +424,11 @@
   color: #1559b9;
 }
 
+.login-submit-button:disabled {
+  cursor: wait;
+  opacity: .7;
+}
+
 @media (min-width: 900px) {
   .login-page {
     width: calc(100% / 1.08);

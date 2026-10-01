@@ -1,12 +1,25 @@
 import { useEffect, useState } from 'react'
 import {
+  ADMIN_SESSION_CHANGED_EVENT,
+  clearAdminSession,
+  clearPortalSession,
+  getAdminSession,
+  getPortalSession,
+  PORTAL_SESSION_CHANGED_EVENT,
+  type AdminSession,
+  type PortalSession,
+} from './api/adminApi'
+import {
   CourseHierarchyDirectory,
   SectionsHierarchyDirectory,
 } from './pages/AcademicHierarchyPage'
 import DashboardPage from './pages/DashboardPage'
+import AdminConsolePage from './pages/AdminConsolePage'
+import AdminUsersPage from './pages/AdminUsersPage'
+import AdminPortalUsersPage from './pages/AdminPortalUsersPage'
+import AdminReferenceManagementPage from './pages/AdminReferenceManagementPage'
 import EmployeeDirectory from './pages/EmployeeDirectory'
 import EnrollmentPage from './pages/EnrollmentPage'
-import FacultyStaffRegistration from './pages/FacultyStaffRegistration'
 import GradesPage from './pages/GradesPage'
 import LoginPage from './pages/LoginPage'
 import MyExamsPage from './pages/MyExamsPage'
@@ -41,9 +54,14 @@ type Page =
   | 'faculty-attendance'
   | 'faculty-grades'
   | 'faculty-schedule'
+  | 'faculty-exam-management'
   | 'faculty-reports'
   | 'admin-faculty-staff'
+  | 'admin-console'
   | 'admin-users'
+  | 'admin-portal-users'
+  | 'admin-positions'
+  | 'admin-designations'
   | 'courses'
   | 'class-schedule'
   | 'employee-registration'
@@ -81,8 +99,13 @@ function getCurrentPage(): Page {
   if (hash === '#faculty/attendance') return 'faculty-attendance'
   if (hash === '#faculty/grades') return 'faculty-grades'
   if (hash === '#faculty/schedule') return 'faculty-schedule'
+  if (hash === '#faculty/exam-management') return 'faculty-exam-management'
   if (hash === '#faculty/reports') return 'faculty-reports'
   if (hash === '#admin/faculty-staff') return 'admin-faculty-staff'
+  if (hash === '#admin/console') return 'admin-console'
+  if (hash === '#admin/portal-users') return 'admin-portal-users'
+  if (hash === '#admin/positions') return 'admin-positions'
+  if (hash === '#admin/designations') return 'admin-designations'
   if (hash === '#students') return 'students'
   if (hash === '#enrollments') return 'enrollments'
   if (hash === '#courses') return 'courses'
@@ -106,14 +129,147 @@ function getCurrentPage(): Page {
   return 'dashboard'
 }
 
+function isAdminPage(page: Page): boolean {
+  return [
+    'dashboard',
+    'admin-console',
+    'admin-users',
+    'admin-portal-users',
+    'admin-positions',
+    'admin-designations',
+    'admin-faculty-staff',
+    'courses',
+    'class-schedule',
+    'employee-registration',
+    'enrollments',
+    'grades',
+    'qr-attendance',
+    'sections',
+    'settings',
+    'students',
+    'students-exam',
+    'subjects',
+    'users',
+  ].includes(page)
+}
+
+function getPortalHomeHash(role: PortalSession['role']): string {
+  if (role === 'Student') return '#student/dashboard'
+  return '#faculty/dashboard'
+}
+
+function getPortalPageRole(page: Page): PortalSession['role'] | null {
+  if (page.startsWith('student-') || page === 'my-exams' || page === 'my-attendance' ||
+      page === 'my-grades' || page === 'my-schedule') {
+    return 'Student'
+  }
+  if (page.startsWith('faculty-')) return 'Faculty'
+  return null
+}
+
+function replaceHash(hash: string): void {
+  window.history.replaceState(
+    window.history.state,
+    '',
+    `${window.location.pathname}${window.location.search}${hash}`,
+  )
+}
+
+function resolveCurrentPage(): Page {
+  const page = getCurrentPage()
+  const hasValidSession = getAdminSession() !== null
+  const portalSession = getPortalSession()
+
+  if (page === 'login' && hasValidSession) {
+    replaceHash('#dashboard')
+    return 'dashboard'
+  }
+
+  if (page === 'login' && portalSession) {
+    replaceHash(getPortalHomeHash(portalSession.role))
+    return getCurrentPage()
+  }
+
+  if (isAdminPage(page) && !hasValidSession) {
+    replaceHash('#login')
+    return 'login'
+  }
+
+  const requiredPortalRole = getPortalPageRole(page)
+  if (requiredPortalRole) {
+    if (!portalSession) {
+      replaceHash('#login')
+      return 'login'
+    }
+    if (portalSession.role !== requiredPortalRole &&
+        !(portalSession.role === 'Staff' && requiredPortalRole === 'Faculty') &&
+        !(portalSession.role === 'User' && requiredPortalRole === 'Faculty')) {
+      replaceHash(getPortalHomeHash(portalSession.role))
+      return getCurrentPage()
+    }
+  }
+
+  return page
+}
+
 function App() {
-  const [page, setPage] = useState(getCurrentPage)
+  const [page, setPage] = useState(resolveCurrentPage)
+  const [session, setSession] = useState<AdminSession | null>(getAdminSession)
+  const [portalSession, setPortalSession] = useState<PortalSession | null>(getPortalSession)
 
   useEffect(() => {
-    const updatePage = () => setPage(getCurrentPage())
+    const updatePage = () => setPage(resolveCurrentPage())
+    const updateSession = () => {
+      setSession(getAdminSession())
+      setPortalSession(getPortalSession())
+      updatePage()
+    }
     window.addEventListener('hashchange', updatePage)
-    return () => window.removeEventListener('hashchange', updatePage)
+    window.addEventListener(ADMIN_SESSION_CHANGED_EVENT, updateSession)
+    window.addEventListener(PORTAL_SESSION_CHANGED_EVENT, updateSession)
+    return () => {
+      window.removeEventListener('hashchange', updatePage)
+      window.removeEventListener(ADMIN_SESSION_CHANGED_EVENT, updateSession)
+      window.removeEventListener(PORTAL_SESSION_CHANGED_EVENT, updateSession)
+    }
   }, [])
+
+  useEffect(() => {
+    if (!session) return
+
+    const expireSession = () => {
+      const activeSession = getAdminSession()
+      if (activeSession) {
+        setSession(activeSession)
+        return
+      }
+
+      replaceHash('#login')
+      clearAdminSession()
+      setSession(null)
+      setPage('login')
+    }
+    const timeout = window.setTimeout(
+      expireSession,
+      Math.max(0, Date.parse(session.expiresAt) - Date.now()),
+    )
+    return () => window.clearTimeout(timeout)
+  }, [session])
+
+  useEffect(() => {
+    if (!portalSession) return
+    const timeout = window.setTimeout(() => {
+      const activeSession = getPortalSession()
+      if (activeSession) {
+        setPortalSession(activeSession)
+        return
+      }
+      clearPortalSession()
+      replaceHash('#login')
+      setPage('login')
+    }, Math.max(0, Date.parse(portalSession.expiresAt) - Date.now()))
+    return () => window.clearTimeout(timeout)
+  }, [portalSession])
 
   if (page === 'register') return <User_Student_Registration />
   if (page === 'landing') return <PortalLandingPage />
@@ -128,9 +284,14 @@ function App() {
   if (page === 'faculty-attendance') return <QRAttendancePage role="faculty" />
   if (page === 'faculty-grades') return <GradesPage role="faculty" />
   if (page === 'faculty-schedule') return <ClassSchedulePage role="faculty" activeLabel="Schedule" />
+  if (page === 'faculty-exam-management') return <StudentsExamPage role="faculty" activeLabel="Exam Management" />
   if (page === 'faculty-reports') return <PortalFeaturePage portal="faculty" feature="reports" />
   if (page === 'admin-faculty-staff') return <EmployeeDirectory />
-  if (page === 'admin-users') return <PortalFeaturePage portal="admin" feature="users" />
+  if (page === 'admin-console') return <AdminConsolePage />
+  if (page === 'admin-users') return <AdminUsersPage />
+  if (page === 'admin-portal-users') return <AdminPortalUsersPage />
+  if (page === 'admin-positions') return <AdminReferenceManagementPage type="positions" />
+  if (page === 'admin-designations') return <AdminReferenceManagementPage type="designations" />
   if (page === 'students') return <StudentDirectory />
   if (page === 'enrollments') return <EnrollmentPage />
   if (page === 'courses') return <CourseHierarchyDirectory />
@@ -149,7 +310,7 @@ function App() {
     const code = decodeURIComponent(window.location.hash.slice('#exam-session/'.length))
     return <StudentExamSession code={code} />
   }
-  if (page === 'employee-registration') return <FacultyStaffRegistration />
+  if (page === 'employee-registration') return <AdminPortalUsersPage />
   if (page === 'users') return <EmployeeDirectory />
   if (page === 'dashboard') return <DashboardPage />
   return <LoginPage />

@@ -1,5 +1,11 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import {
+  clearAdminSession,
+  clearPortalSession,
+  getAdminSession,
+  logoutAdmin,
+} from '../api/adminApi'
+import {
   loadAcademicSettings,
   type AcademicSettings,
 } from './AcademicSettings'
@@ -26,7 +32,11 @@ const navigationByRole: Record<SisPortalRole, { label: string; emoji: string; it
       label: 'ADMINISTRATION',
       emoji: '⚙️',
       items: [
-        { label: 'Users', icon: 'users', href: '#users' },
+        { label: 'Admin Console', icon: 'shield', href: '#admin/console' },
+        { label: 'System Administrators', icon: 'users', href: '#users' },
+        { label: 'Front-end Users', icon: 'user', href: '#admin/portal-users' },
+        { label: 'Positions', icon: 'users', href: '#admin/positions' },
+        { label: 'Designations', icon: 'reports', href: '#admin/designations' },
         { label: 'Students', icon: 'students', href: '#students' },
         { label: 'Faculty/Staff', icon: 'users', href: '#admin/faculty-staff', activeLabels: ['Faculty & Staff'] },
         { label: 'Programs', icon: 'courses', href: '#courses', activeLabels: ['Courses'] },
@@ -49,6 +59,7 @@ const navigationByRole: Record<SisPortalRole, { label: string; emoji: string; it
         { label: 'Subjects', icon: 'courses', href: '#student/subjects' },
         { label: 'Grades', icon: 'grades', href: '#my%20grades', activeLabels: ['My Grades'] },
         { label: 'Schedule', icon: 'calendar', href: '#my%20schedule', activeLabels: ['My Schedule'] },
+        { label: 'Exams', icon: 'student_own_exam', href: '#my%20exams', activeLabels: ['My Exams'] },
         { label: 'Announcements', icon: 'reports', href: '#student/announcements' },
       ],
     },
@@ -64,6 +75,7 @@ const navigationByRole: Record<SisPortalRole, { label: string; emoji: string; it
         { label: 'Attendance', icon: 'qrcodeattendance', href: '#faculty/attendance', activeLabels: ['Attendance'] },
         { label: 'Grades', icon: 'grades', href: '#faculty/grades', activeLabels: ['Grades'] },
         { label: 'Schedule', icon: 'calendar', href: '#faculty/schedule', activeLabels: ['Schedule'] },
+        { label: 'Exam Management', icon: 'studentsexam', href: '#faculty/exam-management', activeLabels: ['Exam Management'] },
         { label: 'Reports', icon: 'reports', href: '#faculty/reports' },
       ],
     },
@@ -99,6 +111,7 @@ function SisLayout({
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   const [adminMenuOpen, setAdminMenuOpen] = useState(false)
   const [profileDialogOpen, setProfileDialogOpen] = useState(false)
+  const [logoutError, setLogoutError] = useState('')
   const [notificationOpen, setNotificationOpen] = useState(false)
   const [academicSettingsState, setAcademicSettingsState] = useState<{
     settings: AcademicSettings | null
@@ -118,6 +131,33 @@ function SisLayout({
   const [isMobile, setIsMobile] = useState(
     () => window.matchMedia('(max-width: 700px)').matches,
   )
+
+  async function handleLogout() {
+    setLogoutError('')
+    setAdminMenuOpen(false)
+
+    if (role === 'admin') {
+      const session = getAdminSession()
+      if (session) {
+        try {
+          await logoutAdmin(session.accessToken)
+        } catch (error: unknown) {
+          setLogoutError(
+            error instanceof Error
+              ? `Could not release this admin session: ${error.message}`
+              : 'Could not release this admin session. Stay signed in and try again.',
+          )
+          setAdminMenuOpen(true)
+          return
+        }
+      }
+      clearAdminSession()
+    } else {
+      clearPortalSession()
+    }
+
+    window.location.hash = '#landing'
+  }
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 700px)')
@@ -398,13 +438,13 @@ function SisLayout({
                   <button
                     type="button"
                     role="menuitem"
-                    onClick={() => {
-                      setAdminMenuOpen(false)
-                      window.location.hash = '#landing'
-                    }}
+                    onClick={() => void handleLogout()}
                   >
                     Logout
                   </button>
+                  {logoutError && (
+                    <p className="sis-admin-logout-error" role="alert">{logoutError}</p>
+                  )}
                 </div>
               )}
             </div>

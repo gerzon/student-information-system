@@ -424,6 +424,17 @@
   outline: 0;
 }
 
+.sis-admin-logout-error {
+  max-width: 240px;
+  margin: 2px 0 0;
+  padding: 8px 9px;
+  color: #8a3434;
+  background: #fff3f2;
+  border-radius: 3px;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
 .sis-admin-avatar {
   display: grid;
   width: 24px;

@@ -1,0 +1,344 @@
+.admin-reference-page {
+  display: grid;
+  gap: 14px;
+}
+
+.admin-reference-intro,
+.admin-reference-panel {
+  min-width: 0;
+  padding: 16px;
+  background: #fff;
+  border: 1px solid #dfe7f1;
+  border-radius: 7px;
+  box-shadow: 0 1px 3px rgb(16 42 79 / 4%);
+}
+
+.admin-reference-intro {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(105deg, #eaf3ff 0%, #f8faff 72%, #fff 100%);
+  border-color: #dce8f6;
+}
+
+.admin-reference-icon,
+.admin-reference-row-icon {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  color: #1d63bb;
+  background: #e8f2fe;
+  border-radius: 8px;
+}
+
+.admin-reference-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.admin-reference-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.admin-reference-eyebrow {
+  color: #3973b9;
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: 1px;
+}
+
+.admin-reference-intro h2,
+.admin-reference-panel h2 {
+  margin: 4px 0;
+  color: #1b365c;
+  font-size: 14px;
+  font-weight: 680;
+}
+
+.admin-reference-intro p,
+.admin-reference-panel-heading p,
+.admin-reference-description {
+  margin: 0;
+  color: #8291a4;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.admin-reference-panel-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.admin-reference-panel-heading h2 {
+  margin-top: 0;
+}
+
+.admin-reference-panel-heading button,
+.admin-reference-form-actions button {
+  min-height: 34px;
+  padding: 7px 11px;
+  border: 1px solid #dbe4ef;
+  border-radius: 5px;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 620;
+  cursor: pointer;
+}
+
+.admin-reference-add-button,
+.admin-reference-save {
+  color: #fff;
+  background: #1260d5;
+  border-color: #1260d5 !important;
+}
+
+.admin-reference-add-button:hover,
+.admin-reference-save:hover {
+  background: #0e50b4;
+}
+
+.admin-reference-save:disabled,
+.admin-reference-delete:disabled {
+  cursor: wait;
+  opacity: .65;
+}
+
+.admin-reference-message {
+  margin: 12px 0 0;
+  padding: 10px 11px;
+  color: #526984;
+  background: #f5f8fc;
+  border: 1px solid #e5ebf3;
+  border-radius: 5px;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.admin-reference-message.is-error {
+  color: #8a3434;
+  background: #fff3f2;
+  border-color: #f1d4d1;
+}
+
+.admin-reference-empty {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  margin-top: 15px;
+  padding: 32px 14px;
+  color: #8291a4;
+  background: #f8fafd;
+  border: 1px dashed #d8e1ec;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.admin-reference-empty > svg {
+  width: 24px;
+  height: 24px;
+  color: #8398b2;
+}
+
+.admin-reference-empty strong {
+  color: #34516f;
+  font-size: 11px;
+}
+
+.admin-reference-empty span {
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.admin-reference-list {
+  display: grid;
+  margin-top: 13px;
+  border-top: 1px solid #edf1f6;
+}
+
+.admin-reference-row {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 2px;
+  border-bottom: 1px solid #edf1f6;
+}
+
+.admin-reference-row-icon {
+  width: 31px;
+  height: 31px;
+}
+
+.admin-reference-row-icon svg {
+  width: 15px;
+  height: 15px;
+}
+
+.admin-reference-entry-copy {
+  display: grid;
+  min-width: 0;
+  flex: 1;
+  gap: 3px;
+}
+
+.admin-reference-entry-copy strong {
+  overflow-wrap: anywhere;
+  color: #294360;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.admin-reference-entry-copy small {
+  overflow-wrap: anywhere;
+  color: #8796a9;
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.admin-reference-actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 6px;
+}
+
+.admin-reference-actions button {
+  min-height: 30px;
+  padding: 5px 9px;
+  background: #fff;
+  border: 1px solid #dbe4ef;
+  border-radius: 5px;
+  font: inherit;
+  font-size: 9px;
+  font-weight: 620;
+  cursor: pointer;
+}
+
+.admin-reference-edit {
+  color: #245fa5;
+}
+
+.admin-reference-edit:hover {
+  background: #f2f7fd;
+}
+
+.admin-reference-delete {
+  color: #a03a3a;
+  border-color: #f0d8d8 !important;
+}
+
+.admin-reference-delete:hover {
+  background: #fff3f2;
+}
+
+.admin-reference-form {
+  display: grid;
+  gap: 7px;
+  margin-top: 14px;
+}
+
+.admin-reference-form label {
+  margin-top: 4px;
+  color: #526984;
+  font-size: 10px;
+  font-weight: 620;
+}
+
+.admin-reference-form label span {
+  color: #8796a9;
+  font-weight: 400;
+}
+
+.admin-reference-form input,
+.admin-reference-form textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: 8px 10px;
+  color: #294360;
+  background: #fff;
+  border: 1px solid #d8e1ec;
+  border-radius: 5px;
+  font: inherit;
+  font-size: 11px;
+}
+
+.admin-reference-form input {
+  min-height: 37px;
+}
+
+.admin-reference-form textarea {
+  min-height: 75px;
+  resize: vertical;
+}
+
+.admin-reference-form :is(input, textarea):focus {
+  border-color: #4381cf;
+  outline: 3px solid rgb(52 123 210 / 13%);
+}
+
+.admin-reference-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 5px;
+}
+
+.admin-reference-cancel {
+  color: #34516f;
+  background: #fff;
+}
+
+.admin-reference-panel > h2 {
+  margin-top: 0;
+}
+
+.admin-reference-examples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.admin-reference-examples li {
+  padding: 6px 9px;
+  color: #506987;
+  background: #f3f7fc;
+  border: 1px solid #e1e8f1;
+  border-radius: 999px;
+  font-size: 9px;
+}
+
+.admin-reference-catalog-note {
+  margin: 12px 0 0;
+  padding: 9px 10px;
+  color: #785b1e;
+  background: #fff9e9;
+  border: 1px solid #f0e2b9;
+  border-radius: 5px;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+@media (max-width: 480px) {
+  .admin-reference-panel-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .admin-reference-panel-heading button {
+    width: 100%;
+  }
+
+  .admin-reference-row {
+    align-items: flex-start;
+  }
+
+  .admin-reference-actions {
+    flex-direction: column;
+  }
+}

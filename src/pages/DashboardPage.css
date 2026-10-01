@@ -530,6 +530,47 @@
   text-align: right;
 }
 
+.dashboard-state,
+.dashboard-empty-state {
+  margin: 0;
+  padding: 10px 12px;
+  color: #526984;
+  background: #f5f8fc;
+  border: 1px solid #e5ebf3;
+  border-radius: 5px;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.dashboard-state.is-error {
+  color: #8a3434;
+  background: #fff3f2;
+  border-color: #f1d4d1;
+}
+
+.dashboard-state a {
+  margin-left: 5px;
+  color: #1b61b7;
+  font-weight: 650;
+}
+
+.dashboard-state button {
+  margin-left: 9px;
+  padding: 0;
+  color: #1b61b7;
+  background: none;
+  border: 0;
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.dashboard-empty-state {
+  margin-top: 15px;
+  color: #8291a4;
+  background: #f8fafd;
+}
+
 @media (min-width: 900px) {
   .dashboard-content {
     gap: 16px;
